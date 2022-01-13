@@ -12,9 +12,8 @@ function App() {
     setQuizStarted(true);
   }
 
-
   return (
-    <div>
+    <div className="app">
     { quizStarted ? 
     <QuizPage /> : 
     <StartPage start={startQuiz}/>}
