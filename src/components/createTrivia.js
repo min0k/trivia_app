@@ -15,11 +15,17 @@ export default function createTrivia(obj) {
       const allChoices = decodedIncorrectAnswers;
       allChoices.push(decodedCorrectAnswer)
 
+      //Shuffle choices to randomize where correct answer is
+      const shuffled = allChoices
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value);
+
       return {
         id: nanoid(),
         question: decodedQuestion,
         correctAnswer: decodedCorrectAnswer,
-        allAnswerChoices: allChoices,
+        allAnswerChoices: shuffled,
         category: e.category,
         difficulty: e.difficulty,
       };

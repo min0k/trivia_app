@@ -7,7 +7,6 @@ export default function QuizPage() {
   const [trivia, setTrivia] = React.useState([]);
   const [gameEnded, setGameEnded] = React.useState(false);
 
-
   React.useEffect(() => {
     async function getTrivia() {
       try {
@@ -23,14 +22,18 @@ export default function QuizPage() {
     getTrivia();
   }, []);
 
-  
   const TriviaCards = trivia.map((e) => {
-    return <Card question={e.question} key={e.id} answerChoices={e.allAnswerChoices}/>;
+    return (
+      <Card
+        question={e.question}
+        key={e.id}
+        answerChoices={e.allAnswerChoices}
+      />
+    );
   });
 
-
   function checkAnswers() {
-    setGameEnded(prevValue => !prevValue);
+    setGameEnded((prevValue) => !prevValue);
   }
 
   console.log("rendered");
@@ -39,7 +42,7 @@ export default function QuizPage() {
   return (
     <div>
       {TriviaCards}
-      <Footer checkAnswers={checkAnswers} gameEnded={gameEnded}/>
+      <Footer checkAnswers={checkAnswers} gameEnded={gameEnded} />
     </div>
   );
 }
