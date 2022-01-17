@@ -6,6 +6,12 @@ import createTrivia from "./createTrivia";
 export default function QuizPage() {
   const [trivia, setTrivia] = React.useState([]);
   const [gameEnded, setGameEnded] = React.useState(false);
+  const [answerChosen, setAnswerChosen] = React.useState(false);
+
+
+function choseAnswer(id) {
+  console.log(id);
+}
 
   React.useEffect(() => {
     async function getTrivia() {
@@ -28,6 +34,7 @@ export default function QuizPage() {
         question={e.question}
         key={e.id}
         answerChoices={e.allAnswerChoices}
+        chose={() => choseAnswer(e.id)}
       />
     );
   });
@@ -36,8 +43,7 @@ export default function QuizPage() {
     setGameEnded((prevValue) => !prevValue);
   }
 
-  console.log("rendered");
-  console.log(trivia);
+  console.log("rendered quizpage");
 
   return (
     <div>
